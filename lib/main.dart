@@ -34,7 +34,7 @@ class _MyAppState extends State<MyApp> {
           brightness: Brightness.dark,
           primaryColor: kPrimaryColor,
           scaffoldBackgroundColor: kBackgroundColor,
-          secondaryHeaderColor: const Color(0xFF151a1d),
+          secondaryHeaderColor: ksecondaryHeaderColor,
           inputDecorationTheme: InputDecorationTheme(
             enabledBorder: UnderlineInputBorder(
               borderSide: BorderSide(
