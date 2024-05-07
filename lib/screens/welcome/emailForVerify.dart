@@ -15,7 +15,9 @@ class _MyPhoneState extends State<MyPhone> {
   TextEditingController emailController = TextEditingController();
 
   void verifyInitate(BuildContext context , String mail){
+    print(mail);
     authService.mailVerify(context: context, email: mail);
+
   }
 
   @override

@@ -20,7 +20,7 @@ class ButtonWidget extends StatelessWidget {
 
       onPressed: onPress,
       style: ElevatedButton.styleFrom(
-        primary: Theme.of(context).primaryColor,
+        backgroundColor: Theme.of(context).primaryColor,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(28.0),
         ),

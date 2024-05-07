@@ -82,10 +82,11 @@ class AuthServices{
             // 'Accept': '*/*'
           }
       );
+      print(email);
 
       Map<String, dynamic> response = jsonDecode(res.body as String);
       String otpToken = response['otptoken'];
-
+      print(otpToken);
 
 //      print(res.body);
       httpErrorHandle(
