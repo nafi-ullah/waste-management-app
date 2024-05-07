@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:waste_management/constants/theming.dart';
+import 'package:waste_management/router.dart';
 import 'package:waste_management/screens/homescreen/adminHomeScreen.dart';
 import 'package:waste_management/widgets/authWidgets/button_widget.dart';
 import 'package:waste_management/widgets/authWidgets/textField.dart';
@@ -34,13 +35,15 @@ class _LoginScreenState extends State<LoginScreen> {
     //     context: context,
     //     email: emailController.text,
     //     password: passwordController.text);
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => const HomeScreen(),
-      ),
-    );
+    Navigator.pushAndRemoveUntil(
+        context,
+        generateRoute(
+            RouteSettings(name: HomeScreen.routeName)
+        ),
+        //MaterialPageRoute(builder: (context) => HomeScreen()), same as above
+            (route) => false);
   }
+
 
   @override
   Widget build(BuildContext context) {
