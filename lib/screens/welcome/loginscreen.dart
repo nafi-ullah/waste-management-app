@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:waste_management/constants/theming.dart';
 import 'package:waste_management/router.dart';
 import 'package:waste_management/screens/homescreen/adminHomeScreen.dart';
+import 'package:waste_management/services/auth_service.dart';
 import 'package:waste_management/widgets/authWidgets/button_widget.dart';
 import 'package:waste_management/widgets/authWidgets/textField.dart';
 import 'package:waste_management/widgets/authWidgets/text_widget.dart';
@@ -21,7 +22,7 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-  // final AuthServices authService = AuthServices();
+   final AuthServices authService = AuthServices();
 
   @override
   void dispose() {
@@ -31,17 +32,20 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   void login() {
-    // authService.signInUser(
-    //     context: context,
-    //     email: emailController.text,
-    //     password: passwordController.text);
-    Navigator.pushAndRemoveUntil(
-        context,
-        generateRoute(
-            RouteSettings(name: HomeScreen.routeName)
-        ),
-        //MaterialPageRoute(builder: (context) => HomeScreen()), same as above
-            (route) => false);
+    authService.signInUser(
+        context: context,
+        email: emailController.text,
+        password: passwordController.text
+    );
+
+    // Navigator.pushAndRemoveUntil(
+    //     context,
+    //     generateRoute(
+    //         RouteSettings(name: HomeScreen.routeName)
+    //     ),
+    //     //MaterialPageRoute(builder: (context) => HomeScreen()), same as above
+    //         (route) => false
+    //    );
   }
 
 

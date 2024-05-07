@@ -109,3 +109,5 @@ class StsAdd extends StatelessWidget {
     );
   }
 }
+// prompt
+// write code for open bottom sheet when floating action button is pressed. the bottom sheet should contain: STS name input field, ward number input field,  capacity input field,  location name input field,  latitude input field,longitude input field. the bottom sheet should cover full screen.

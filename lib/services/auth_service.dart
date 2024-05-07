@@ -14,55 +14,55 @@ import 'package:waste_management/screens/homescreen/adminHomeScreen.dart';
 
 class AuthServices{
 
-  void signUpUser({
-    required BuildContext context,
-    required String email,
-    required String password,
-    required String name,
-    required String messid,
-  }) async {
-    try{
-      User user = User(
-          id: '',
-          name: name,
-          email: email,
-          password: password,
-          messid: messid,
-          messname: '',
-          token: ''
-      );
-
-      http.Response res=  await http.post(Uri.parse('$uri/api/signup'),
-          body: user.toJson(),
-          headers: <String, String>{
-            'Content-Type' : 'application/json; charset=UTF-8',
-
-          }
-      );
-      print("Sign up info");
-      print(res.body);
-
-
-
-      httpErrorHandle(
-          response: res,
-          context: context,
-          onSuccess: (){
-            //print("Account opened");
-            showSnackBar(context, 'Account created! Log in with same email and password');
-          }
-      );
-
-
-    }catch(e){
-      print(e.toString());
-      // ScaffoldMessenger.of(context).showSnackBar(
-      //     SnackBar(
-      //         content: Text("Try again with right information" )));
-
-
-    }
-  }
+  // void signUpUser({
+  //   required BuildContext context,
+  //   required String email,
+  //   required String password,
+  //   required String name,
+  //   required String messid,
+  // }) async {
+  //   try{
+  //     User user = User(
+  //         id: '',
+  //         name: name,
+  //         email: email,
+  //         password: password,
+  //         messid: messid,
+  //         messname: '',
+  //         token: ''
+  //     );
+  //
+  //     http.Response res=  await http.post(Uri.parse('$uri/api/signup'),
+  //         body: user.toJson(),
+  //         headers: <String, String>{
+  //           'Content-Type' : 'application/json; charset=UTF-8',
+  //
+  //         }
+  //     );
+  //     print("Sign up info");
+  //     print(res.body);
+  //
+  //
+  //
+  //     httpErrorHandle(
+  //         response: res,
+  //         context: context,
+  //         onSuccess: (){
+  //           //print("Account opened");
+  //           showSnackBar(context, 'Account created! Log in with same email and password');
+  //         }
+  //     );
+  //
+  //
+  //   }catch(e){
+  //     print(e.toString());
+  //     // ScaffoldMessenger.of(context).showSnackBar(
+  //     //     SnackBar(
+  //     //         content: Text("Try again with right information" )));
+  //
+  //
+  //   }
+  // }
 
   void signInUser({
     required BuildContext context,
@@ -71,7 +71,7 @@ class AuthServices{
   }) async {
     try{
 
-      http.Response res=  await http.post(Uri.parse('$uri/api/signin'),
+      final  res=  await http.post(Uri.parse('$uri/auth/login'),
           body: jsonEncode({
             'email': email,
             'password': password
@@ -83,8 +83,6 @@ class AuthServices{
           }
       );
 
-      //print(res.body);
-
 
 //      print(res.body);
       httpErrorHandle(
@@ -95,8 +93,17 @@ class AuthServices{
             // log in er por token store kore rakhbo jeno barbar log in krte na hoy
 
             SharedPreferences prefs = await SharedPreferences.getInstance();
-            Provider.of<UserProvider>(context, listen: false).setUser(res.body);
-            await prefs.setString('x-auth-token', jsonDecode(res.body)['token']);
+            Map<String, dynamic> json = jsonDecode(res.body as String);
+            User loggeduser = User.fromMap(json);
+
+            print(loggeduser.id);
+            print(loggeduser.username);
+            print(loggeduser.email);
+            print(loggeduser.roleName);
+            print(loggeduser.token);
+
+            Provider.of<UserProvider>(context, listen: false).setUser(loggeduser);
+
 
 
 
@@ -120,92 +127,7 @@ class AuthServices{
     }
   }
 
-  void getUserData(
-      BuildContext context,
-      ) async {
-    try {
-      SharedPreferences prefs = await SharedPreferences.getInstance();
-      String? token = prefs.getString('x-auth-token');
 
-      if (token == null) {
-        prefs.setString('x-auth-token', '');
-      }
-
-      var tokenRes = await http.post(
-        Uri.parse('$uri/tokenIsValid'),
-        headers: <String, String>{
-          'Content-Type': 'application/json; charset=UTF-8',
-          'x-auth-token': token!
-        },
-      );
-
-      var response = jsonDecode(tokenRes.body);
-
-      if (response == true) {
-        http.Response userRes = await http.get(
-          Uri.parse('$uri/'),
-          headers: <String, String>{
-            'Content-Type': 'application/json; charset=UTF-8',
-            'x-auth-token': token
-          },
-        );
-
-        var userProvider = Provider.of<UserProvider>(context, listen: false);
-        userProvider.setUser(userRes.body);
-      }
-    } catch (e) {
-      showSnackBar(context, e.toString());
-    }
-  }
-
-  void messNameChange({
-    required BuildContext context,
-    required String email,
-    required String messid,
-    required String messname,
-  }) async {
-    try{
-      User user = User(
-          id: '',
-          name: '',
-          email: email,
-          password: '',
-          messid: messid,
-          messname: messname,
-          token: ''
-      );
-
-      http.Response res=  await http.patch(Uri.parse('$uri/api/updateMessName'),
-          body: user.toJson(),
-          headers: <String, String>{
-            'Content-Type' : 'application/json; charset=UTF-8',
-          }
-      );
-      // print(res.body);
-      SharedPreferences prefs = await SharedPreferences.getInstance();
-      Provider.of<UserProvider>(context, listen: false).setUser(res.body);
-      await prefs.setString('x-auth-token', jsonDecode(res.body)['token']);
-
-
-      httpErrorHandle(
-          response: res,
-          context: context,
-          onSuccess: (){
-            //print("Account opened");
-            showSnackBar(context, 'Mess Name Updated');
-          }
-      );
-
-
-    }catch(e){
-      print(e.toString());
-      // ScaffoldMessenger.of(context).showSnackBar(
-      //     SnackBar(
-      //         content: Text("Try again with right information" )));
-
-
-    }
-  }
 
 
 }

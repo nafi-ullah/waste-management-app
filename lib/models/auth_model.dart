@@ -2,42 +2,54 @@ import 'dart:convert';
 
 class User{
   final String id;
-  final String name;
+  final String username;
   final String email;
-  final String password;
-  final String messid;
-  final String messname;
+  final String profileName;
+  final String roleName;
+  final String stsId;
+  final String landfillId;
+  final String sts;
+  final String landfill;
   final String token;
 
   User({
     required this.id,
-    required this.name,
+    required this.username,
     required this.email,
-    required this.password,
-    required this.messid,
-    required this.messname,
+    required this.profileName,
+    required this.roleName,
+    required this.stsId,
+    required this.sts,
+    required this.landfillId,
+    required this.landfill,
     required this.token});
 
 // json serialization (parameter gula select kore bulb icon a click korar por option ashbe)
   Map<String,dynamic> toMap(){
     return{
       'id': id,
-      'name': name,
+      'username': username,
       'email': email,
-      'password': password,
-      'messid': messid,
-      'messname': messname,
+      'profileName': profileName,
+      'roleName': roleName,
+      'stsId': stsId,
+      'sts': sts,
+      'landfillId': landfillId,
+      'landfill': landfill,
       'token': token
     };
   }
   factory User.fromMap(Map<String,dynamic>map){
     return User(
-      id: map['_id'] ?? '',
-      name: map['name'] ?? '',
-      email: map['email'] ?? '',
-      password: map['password'] ?? '',
-      messid: map['messid'] ?? '',
-      messname: map['messname'] ?? '',
+      id: map['user']['_id'] ?? '',
+      username: map['user']['username'] ?? '',
+      email: map['user']['email'] ?? '',
+      profileName: map['user']['profileName'] ?? '',
+      roleName: map['user']['roleName'] ?? '',
+      stsId: map['user']['stsId'] ?? '',
+      sts: map['user']['sts'] ?? '',
+      landfillId: map['user']['landfillId'] ?? '',
+      landfill: map['user']['landfill'] ?? '',
       token: map['token'] ?? '',
     );
   }
