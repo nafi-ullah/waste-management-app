@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:waste_management/constants/theming.dart';
-import 'package:waste_management/screens/homescreen/homeScreen.dart';
+import 'package:waste_management/screens/homescreen/adminHomeScreen.dart';
 import 'package:waste_management/widgets/authWidgets/button_widget.dart';
 import 'package:waste_management/widgets/authWidgets/textField.dart';
 import 'package:waste_management/widgets/authWidgets/text_widget.dart';
