@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:waste_management/constants/theming.dart';
 import 'package:waste_management/screens/homescreen/homeScreen.dart';
 import 'package:waste_management/widgets/authWidgets/button_widget.dart';
 import 'package:waste_management/widgets/authWidgets/textField.dart';
@@ -33,6 +34,12 @@ class _LoginScreenState extends State<LoginScreen> {
     //     context: context,
     //     email: emailController.text,
     //     password: passwordController.text);
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const HomeScreen(),
+      ),
+    );
   }
 
   @override
@@ -72,7 +79,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   TextWidget(
                     title: "Email",
                     txtSize: 22,
-                    txtColor: const Color(0xffdddee3),
+                    txtColor: kPrimaryColor,
                   ),
                   InputTxtField(
                     hintText: "Your Email Address",
@@ -83,7 +90,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   TextWidget(
                     title: "Password",
                     txtSize: 22,
-                    txtColor: const Color(0xffdddee3),
+                    txtColor: kPrimaryColor,
                   ),
                   InputTxtField(
                     hintText: "Password",

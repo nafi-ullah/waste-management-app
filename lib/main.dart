@@ -31,7 +31,7 @@ class _MyAppState extends State<MyApp> {
         title: 'Auth Screen 1',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-          brightness: Brightness.dark,
+          brightness: Brightness.light,
           primaryColor: kPrimaryColor,
           scaffoldBackgroundColor: kBackgroundColor,
           secondaryHeaderColor: ksecondaryHeaderColor,
