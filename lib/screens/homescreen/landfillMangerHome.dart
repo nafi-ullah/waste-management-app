@@ -11,6 +11,6 @@ class LandfillMangerHome extends StatefulWidget {
 class _LandfillMangerHomeState extends State<LandfillMangerHome> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(body: Text("This is Landfill Manager home screen"),);
+    return const Scaffold(body: Center(child: Text("This is Landfill Manager home screen")),);
   }
 }
