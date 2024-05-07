@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+
 import 'package:waste_management/constants/theming.dart';
 import 'package:waste_management/models/sts.dart';
 import 'package:waste_management/models/vehicle.dart';
@@ -18,7 +18,8 @@ class StsDataTable extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Text("STS Details",  style: GoogleFonts.roboto(
+            const Text("STS Details",  style: TextStyle(
+              fontFamily: 'Arial',
               fontSize: 17,
               fontWeight: FontWeight.bold,
               color: kPrimaryColor,

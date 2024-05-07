@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+
 
 class TextWidget extends StatelessWidget {
   final String title;
@@ -12,7 +12,8 @@ class TextWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       title,
-      style: GoogleFonts.roboto(
+      style: TextStyle(
+        fontFamily: 'Arial',
         fontSize: txtSize,
         fontWeight: FontWeight.bold,
         color: txtColor,

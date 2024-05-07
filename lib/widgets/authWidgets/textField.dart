@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+
 
 class InputTxtField extends StatelessWidget {
   final String hintText;
@@ -19,8 +19,9 @@ class InputTxtField extends StatelessWidget {
       controller: controller,
       validator: validator,
       obscureText: obscureText,
-      style: GoogleFonts.roboto(
-        color: const Color(0xff888b91),
+      style: const TextStyle(
+        fontFamily: 'Arial',
+        color:  Color(0xff888b91),
         fontSize: 18,
       ),
       decoration: InputDecoration(
@@ -38,9 +39,10 @@ class InputTxtField extends StatelessWidget {
         ),
         border: const UnderlineInputBorder(),
         hintText: hintText,
-        hintStyle: GoogleFonts.roboto(
+        hintStyle: const TextStyle(
+          fontFamily: 'Arial',
           fontWeight: FontWeight.bold,
-          color: const Color(0xff888b91),
+          color:  Color(0xff888b91),
           fontSize: 14,
         ),
       ),

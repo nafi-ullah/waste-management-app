@@ -2,24 +2,34 @@ import 'package:flutter/material.dart';
 import 'package:pinput/pinput.dart';
 import 'package:waste_management/constants/theming.dart';
 import 'package:waste_management/screens/welcome/emailForVerify.dart';
+import 'package:waste_management/services/auth_service.dart';
 
 class MyVerify extends StatefulWidget {
   MyVerify({super.key,
-  required this.email
+  required this.email,
+    required this.otpToken
   });
 
   String email;
+  String otpToken;
 
   @override
   State<MyVerify> createState() => _MyVerifyState();
 }
 
 class _MyVerifyState extends State<MyVerify> {
-
+  final AuthServices authService = AuthServices();
   final pinController = TextEditingController();
   final focusedBorderColor = Color.fromRGBO(23, 171, 144, 1);
   final fillColor = Color.fromRGBO(243, 246, 249, 0);
   final borderColor = Color.fromRGBO(23, 171, 144, 0.4);
+
+  void ForgetPassInitiate(BuildContext context, String otp){
+
+
+  }
+
+
 
   @override
   void dispose() {
@@ -39,7 +49,7 @@ class _MyVerifyState extends State<MyVerify> {
           fontWeight: FontWeight.w600),
       decoration: BoxDecoration(
         border: Border.all(color: Colors.black),
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(8),
       ),
     );
 

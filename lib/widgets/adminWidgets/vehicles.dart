@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:waste_management/constants/theming.dart';
 import 'package:waste_management/models/vehicle.dart';
 import 'package:waste_management/widgets/adminWidgets/vehicleAdd.dart';
@@ -17,7 +16,8 @@ class VehicleDataTable extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Text("Vehicles",  style: GoogleFonts.roboto(
+            const Text("Vehicles",  style: TextStyle(
+              fontFamily: 'Arial',
               fontSize: 17,
               fontWeight: FontWeight.bold,
               color: kPrimaryColor,

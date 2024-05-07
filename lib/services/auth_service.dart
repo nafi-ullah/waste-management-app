@@ -12,6 +12,7 @@ import 'package:waste_management/providers/user_provider.dart';
 import 'package:waste_management/router.dart';
 import 'package:waste_management/screens/homescreen/adminHomeScreen.dart';
 import 'package:waste_management/screens/welcome/loginscreen.dart';
+import 'package:waste_management/screens/welcome/otpVerify.dart';
 
 class AuthServices{
 
@@ -71,7 +72,7 @@ class AuthServices{
   }) async {
     try{
 
-      final  res=  await http.post(Uri.parse('$uri/auth/login'),
+      final  res=  await http.post(Uri.parse('$uri/auth/reset-password/initiate'),
           body: jsonEncode({
             'email': email,
           }),
@@ -82,6 +83,9 @@ class AuthServices{
           }
       );
 
+      Map<String, dynamic> response = jsonDecode(res.body as String);
+      String otpToken = response['otptoken'];
+
 
 //      print(res.body);
       httpErrorHandle(
@@ -89,21 +93,13 @@ class AuthServices{
           context: context,
           onSuccess: () async {
 
-            // log in er por token store kore rakhbo jeno barbar log in krte na hoy
-
-            SharedPreferences prefs = await SharedPreferences.getInstance();
-            await prefs.setString('OTP Token', jsonDecode(res.body)['otptoken']);
-
-
-
-            //shared preference a jst token ta thakbe
-            Navigator.pushAndRemoveUntil(
+            Navigator.push(
                 context,
-                generateRoute(
-                    RouteSettings(name: LoginScreen.routeName)
-                ),
-                //MaterialPageRoute(builder: (context) => HomeScreen()), same as above
-                    (route) => false);
+                MaterialPageRoute(
+                    builder: (context) =>  MyVerify(email: email, otpToken: otpToken,)
+                )
+            );
+
           }
       );
     }catch(e){

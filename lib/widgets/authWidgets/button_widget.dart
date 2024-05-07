@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+
 
 import '../../constants/theming.dart';
 
@@ -27,7 +27,8 @@ class ButtonWidget extends StatelessWidget {
       ),
       child: Text(
         btnText.toUpperCase(),
-        style: GoogleFonts.notoSans(
+        style: TextStyle(
+          fontFamily: 'Arial',
           fontSize: textSize,
           fontWeight: FontWeight.bold,
           color: ksecondaryHeaderColor,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:waste_management/constants/theming.dart';
 import 'package:waste_management/screens/welcome/otpVerify.dart';
+import 'package:waste_management/services/auth_service.dart';
 
 class MyPhone extends StatefulWidget {
   const MyPhone({Key? key}) : super(key: key);
@@ -10,7 +11,12 @@ class MyPhone extends StatefulWidget {
 }
 
 class _MyPhoneState extends State<MyPhone> {
+  final AuthServices authService = AuthServices();
   TextEditingController emailController = TextEditingController();
+
+  void verifyInitate(BuildContext context , String mail){
+    authService.mailVerify(context: context, email: mail);
+  }
 
   @override
   void initState() {
@@ -96,12 +102,7 @@ class _MyPhoneState extends State<MyPhone> {
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10))),
                     onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                          builder: (context) =>  MyVerify(email: emailController.text,)
-                          )
-                      );
+                      verifyInitate(context, emailController.text);
                     },
                     child: const Text("Send the code", style: TextStyle(
                         color: ksecondaryHeaderColor)
