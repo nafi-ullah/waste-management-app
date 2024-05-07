@@ -98,10 +98,10 @@ class _HomeScreenState extends State<HomeScreen> {
         color: kPrimaryLightColor,
         index: 2,
         items: <Widget>[
-          Icon(Icons.list_alt, size: 30, color: ksecondaryHeaderColor,),
-          Icon(Icons.shopping_cart_outlined, size: 30, color: ksecondaryHeaderColor,),
+          Icon(Icons.people_outlined, size: 30, color: ksecondaryHeaderColor,),
+          Icon(Icons.timelapse_outlined, size: 30, color: ksecondaryHeaderColor,),
           Icon(Icons.home, size: 30, color: ksecondaryHeaderColor,),
-          Icon(Icons.message_outlined, size: 30, color: ksecondaryHeaderColor,),
+          Icon(Icons.list_alt, size: 30, color: ksecondaryHeaderColor,),
           Icon(Icons.account_circle_outlined, size: 30, color: ksecondaryHeaderColor,),
         ],
         onTap: (index) {

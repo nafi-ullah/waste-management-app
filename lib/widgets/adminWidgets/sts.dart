@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:waste_management/constants/theming.dart';
+import 'package:waste_management/models/sts.dart';
 import 'package:waste_management/models/vehicle.dart';
-import 'package:waste_management/widgets/adminWidgets/vehicleAdd.dart';
+import 'package:waste_management/widgets/adminWidgets/stsAdd.dart';
 
 
 
-class VehicleDataTable extends StatelessWidget {
-  final List<Vehicle> vehicles;
+class StsDataTable extends StatelessWidget {
+  final List<Sts> stses;
 
-  const VehicleDataTable({Key? key, required this.vehicles}) : super(key: key);
+  const StsDataTable({Key? key, required this.stses}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,23 +18,23 @@ class VehicleDataTable extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Text("Vehicles",  style: GoogleFonts.roboto(
+            Text("STS Details",  style: GoogleFonts.roboto(
               fontSize: 17,
               fontWeight: FontWeight.bold,
               color: kPrimaryColor,
             ),),
             DataTable(
               columns: [
-                DataColumn(label: Text('Number')),
-                DataColumn(label: Text('Type')),
+                DataColumn(label: Text('Title')),
+                DataColumn(label: Text('Ward')),
                 DataColumn(label: Text('Cap')),
                 DataColumn(label: Text('')),
               ],
-              rows: vehicles.map((vehicle) {
+              rows: stses.map((sts) {
                 return DataRow(cells: [
-                  DataCell(Text(vehicle.vehicleNumber)),
-                  DataCell(Text(vehicle.vehicleType)),
-                  DataCell(Text(vehicle.capacity.toString())),
+                  DataCell(Text(sts.stsName)),
+                  DataCell(Text(sts.ward)),
+                  DataCell(Text(sts.capacity.toString())),
                   DataCell(IconButton(
                     icon: Icon(Icons.remove_red_eye),
                     onPressed: () {
@@ -45,12 +46,11 @@ class VehicleDataTable extends StatelessWidget {
                             content: SingleChildScrollView(
                               child: ListBody(
                                 children: <Widget>[
-                                  Text('Vehicle Number: ${vehicle.vehicleNumber}'),
-                                  Text('Vehicle Type: ${vehicle.vehicleType}'),
-                                  Text('Capacity: ${vehicle.capacity}'),
-                                  Text('Landfill Name: ${vehicle.landfillName}'),
-                                  Text('Unloaded Cost: ${vehicle.unloadedCost}'),
-                                  Text('Loaded Cost: ${vehicle.loadedCost}'),
+                                  Text('Vehicle Number: ${sts.stsName}'),
+                                  Text('Vehicle Type: ${sts.ward}'),
+                                  Text('Capacity: ${sts.capacity}'),
+                                  Text('Manager: ${sts.stsManager}'),
+
                                 ],
                               ),
                             ),
@@ -72,7 +72,6 @@ class VehicleDataTable extends StatelessWidget {
             ),
           ],
         ),
-
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -81,7 +80,7 @@ class VehicleDataTable extends StatelessWidget {
             context: context,
             isScrollControlled: true, // Make it cover full screen
             builder: (BuildContext context) {
-              return VehicleAdd();
+              return StsAdd();
             },
           );
         },

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:waste_management/constants/theming.dart';
+import 'package:waste_management/models/sts.dart';
 import 'package:waste_management/models/vehicle.dart';
+import 'package:waste_management/widgets/adminWidgets/sts.dart';
 import 'package:waste_management/widgets/adminWidgets/vehicles.dart';
 
 class AdminDashboard extends StatefulWidget {
@@ -95,6 +97,70 @@ class _AdminDashboardState extends State<AdminDashboard> {
   ];
 
 
+  List<Sts> stations = [
+    Sts(
+      stsName: "Sts 1",
+      ward: " 1",
+      capacity: 100,
+      stsManager: "John",
+    ),
+    Sts(
+      stsName: "Sts 2",
+      ward: " 2",
+      capacity: 80,
+      stsManager: "Emma",
+    ),
+    Sts(
+      stsName: "Sts 3",
+      ward: " 3",
+      capacity: 120,
+      stsManager: "Michel",
+    ),
+    Sts(
+      stsName: "Sts 4",
+      ward: " 4",
+      capacity: 90,
+      stsManager: "Sophia",
+    ),
+    Sts(
+      stsName: "Sts 5",
+      ward: " 5",
+      capacity: 110,
+      stsManager: "Willium",
+    ),
+    Sts(
+      stsName: "Sts 6",
+      ward: " 6",
+      capacity: 130,
+      stsManager: "Olivia",
+    ),
+    Sts(
+      stsName: "Sts 7",
+      ward: " 7",
+      capacity: 70,
+      stsManager: "James",
+    ),
+    Sts(
+      stsName: "Sts 8",
+      ward: " 8",
+      capacity: 100,
+      stsManager: "Ava",
+    ),
+    Sts(
+      stsName: "Sts 9",
+      ward: " 9",
+      capacity: 85,
+      stsManager: "Alexa",
+    ),
+    Sts(
+      stsName: "Sts 10",
+      ward: " 10",
+      capacity: 95,
+      stsManager: "Issabela",
+    ),
+  ];
+
+
   @override
   Widget build(BuildContext context) {
     return  DefaultTabController(
@@ -117,14 +183,8 @@ class _AdminDashboardState extends State<AdminDashboard> {
           ),
           body: TabBarView(
     children: [
-      Container(
-    child: VehicleDataTable(vehicles: vehicles,)
-    ),
-    Container(
-    child: Center(
-    child: Text("This is STS"),
-    ),
-    ),
+      VehicleDataTable(vehicles: vehicles,),
+        StsDataTable(stses: stations),
     Container(
     child: Center(
     child: Text("This is Landfill"),
