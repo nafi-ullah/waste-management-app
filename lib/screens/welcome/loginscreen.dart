@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:waste_management/constants/theming.dart';
 import 'package:waste_management/router.dart';
 import 'package:waste_management/screens/homescreen/adminHomeScreen.dart';
+import 'package:waste_management/screens/welcome/emailForVerify.dart';
 import 'package:waste_management/services/auth_service.dart';
 import 'package:waste_management/widgets/authWidgets/button_widget.dart';
 import 'package:waste_management/widgets/authWidgets/textField.dart';
@@ -110,7 +111,12 @@ class _LoginScreenState extends State<LoginScreen> {
                     children: [
                       GestureDetector(
                         onTap: () {
-
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>  MyPhone()
+                              )
+                          );
                         },
                         child: TextWidget(
                           title: "Forget password?",

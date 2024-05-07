@@ -11,6 +11,7 @@ import 'package:waste_management/models/auth_model.dart';
 import 'package:waste_management/providers/user_provider.dart';
 import 'package:waste_management/router.dart';
 import 'package:waste_management/screens/homescreen/adminHomeScreen.dart';
+import 'package:waste_management/screens/welcome/loginscreen.dart';
 
 class AuthServices{
 
@@ -64,6 +65,53 @@ class AuthServices{
   //   }
   // }
 
+  void mailVerify({
+    required BuildContext context,
+    required String email,
+  }) async {
+    try{
+
+      final  res=  await http.post(Uri.parse('$uri/auth/login'),
+          body: jsonEncode({
+            'email': email,
+          }),
+          headers: <String, String>{
+            // "Access-Control-Allow-Origin": "*",
+            'Content-Type' : 'application/json; charset=UTF-8',
+            // 'Accept': '*/*'
+          }
+      );
+
+
+//      print(res.body);
+      httpErrorHandle(
+          response: res,
+          context: context,
+          onSuccess: () async {
+
+            // log in er por token store kore rakhbo jeno barbar log in krte na hoy
+
+            SharedPreferences prefs = await SharedPreferences.getInstance();
+            await prefs.setString('OTP Token', jsonDecode(res.body)['otptoken']);
+
+
+
+            //shared preference a jst token ta thakbe
+            Navigator.pushAndRemoveUntil(
+                context,
+                generateRoute(
+                    RouteSettings(name: LoginScreen.routeName)
+                ),
+                //MaterialPageRoute(builder: (context) => HomeScreen()), same as above
+                    (route) => false);
+          }
+      );
+    }catch(e){
+      print(e.toString());
+      showSnackBar(context, e.toString());
+    }
+  }
+
   void signInUser({
     required BuildContext context,
     required String email,
@@ -103,7 +151,7 @@ class AuthServices{
             print(loggeduser.token);
 
             Provider.of<UserProvider>(context, listen: false).setUser(loggeduser);
-
+            await prefs.setString('Authentication', jsonDecode(res.body)['token']);
 
 
 
